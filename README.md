@@ -3,7 +3,7 @@
 **Step 1:** Fork and clone this repository.
 
 ```bash
-  git clone https://github.com/Yuchnan/mnetflix-clone-fe.git
+  git clone https://github.com/Yuchnan/netflix-clone-fe.git
 ```
 **Step 2:** Install node_modules.
 
