@@ -6,6 +6,7 @@ import './index.css'
 import Landing from "./pages/Landing"
 import Browse from "./pages/Browse"
 import Watch from './pages/Watch'
+import Register from './pages/Register'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/watch/:id",
     element: <Watch />
+  },
+  {
+    path: "/register",
+    element: <Register />
   }
 ])
 
