@@ -9,9 +9,9 @@ import { searchMovies } from '@/utils/searchMovies'
 const SearchMovies = () => {
     const [, setIdMovie] = useAtom(idMovieAtom)
     const [searchQuery] = useAtom(searchMoviesAtom)
-    const [, setIsFetching] = useAtom(isFetchingAtom)
     const [isHover, setIsHover] = useState(false)
     const [movieList, setMovieList] = useState([])
+    const [, setIsFetching] = useAtom(isFetchingAtom)
 
     useEffect(() => {
         if (searchQuery) {

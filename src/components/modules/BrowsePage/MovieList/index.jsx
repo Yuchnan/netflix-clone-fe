@@ -9,9 +9,9 @@ import { getMoviesByType } from '@/utils/getMoviesByType'
 
 const MovieList = ({ title, moviesType }) => {
     const [, setIdMovie] = useAtom(idMovieAtom)
-    const [, setIsFetching] = useAtom(isFetchingAtom)
     const [isHover, setIsHover] = useState(false)
     const [movieList, setMovieList] = useState([])
+    const [, setIsFetching] = useAtom(isFetchingAtom)
 
     useEffect(() => {
         if (moviesType) {

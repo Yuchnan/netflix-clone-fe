@@ -42,7 +42,7 @@ const Recommendation = () => {
                                     onClick={() => {
                                         navigate("/watch/" + videoUrl)
                                         setIsOpenModal(false)
-                                        setIdMovie(false)
+                                        setIdMovie(null)
                                     }}
                                     className='absolute top-10 left-1/2 -translate-x-1/2'
                                 >

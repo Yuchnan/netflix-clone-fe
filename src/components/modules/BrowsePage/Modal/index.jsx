@@ -13,10 +13,11 @@ import { useNavigate } from 'react-router-dom'
 const Modal = () => {
     const navigate = useNavigate()
 
-    const [isOpenModal, setIsOpenModal] = useAtom(isOpenModalAtom)
-    const [idMovie, setIdMovie] = useAtom(idMovieAtom)
     const [movieDetail, setMovieDetail] = useState([])
     const [videoUrl, setVideoUrl] = useState(null)
+
+    const [isOpenModal, setIsOpenModal] = useAtom(isOpenModalAtom)
+    const [idMovie, setIdMovie] = useAtom(idMovieAtom)
 
     useEffect(() => {
         if (idMovie && isOpenModal) {
