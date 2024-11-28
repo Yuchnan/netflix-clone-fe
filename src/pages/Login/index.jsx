@@ -9,10 +9,11 @@ import { useAtom } from 'jotai'
 const Register = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useAtom(emailAtom)
+    const [password, setPassword] = useState(null)
 
-    const handleLogin = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault
-        alert("REGISTER SUCCESS!")
+        alert("LOGIN SUCCESS!")
     }
 
     return (
@@ -29,7 +30,7 @@ const Register = () => {
                             className='text-slate-200 hover:text-white cursor-pointer'
                             onClick={() => navigate("/")}
                         />
-                        <h3>Sign Up</h3>
+                        <h3>Sign In</h3>
                     </div>
                     <div className='relative'>
                         <input
@@ -47,6 +48,7 @@ const Register = () => {
                         <input
                             placeholder="Password"
                             type='password'
+                            onChange={(e) => setPassword(e.target.value)}
                             className='w-full p-4 bg-black/50 rounded-md border border-white/50 peer placeholder-transparent'
                         />
                         <label
@@ -55,17 +57,17 @@ const Register = () => {
                     </div>
                     <div className='flex flex-col gap-4'>
                         <button
-                            onClick={handleLogin}
+                            onClick={handleRegister}
                             className='bg-red-500 py-3 w-full text-white font-bold rounded-md'
                         >
-                            Sign Up
+                            Sign In
                         </button>
-                        <p>Already have an account?
+                        <p>Not having an account?
                             <span
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/register")}
                                 className='text-blue-500 underline cursor-pointer ml-2'
                             >
-                                Sign in here
+                                Sign up here
                             </span>
                         </p>
                     </div>
