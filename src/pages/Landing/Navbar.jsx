@@ -13,7 +13,7 @@ function Navbar() {
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                     <OptionLanguage/>
-                    <DefaultButton text={"Sign In"} onClick={() => navigate("/browse")} />
+                    <DefaultButton text={"Browse Movies"} onClick={() => navigate("/browse")} />
                 </div>
             </nav>
         </header>
