@@ -17,12 +17,6 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
     const [videoUrl, setVideoUrl] = useState(null)
     const [isFetching] = useAtom(isFetchingAtom)
 
-    useEffect(() => {
-        if (idMovie && data) {
-            getVideoUrl({ movie_id: data.id }).then(result => setVideoUrl(result))
-        }
-    }, [idMovie, data])
-
     if (isFetching) return <Skeleton />
 
     return (
@@ -73,6 +67,7 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
                     onMouseEnter={() => {
                         setIsHover(true)
                         setIdMovie(data.id)
+                        getVideoUrl({ movie_id: data.id }).then(result => setVideoUrl(result))
                     }}
                     src={`${import.meta.env.VITE_BASE_URL_TMDB_IMAGE}${data.poster_path}`}
                     className='w-full max-h-48 cursor-pointer'

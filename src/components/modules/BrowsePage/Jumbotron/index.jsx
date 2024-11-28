@@ -11,8 +11,10 @@ import { useNavigate } from 'react-router-dom'
 const Jumbotron = () => {
     const navigate = useNavigate()
 
-    const [idMovie, setIdMovie] = useAtom(idMovieAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
+    const [, setIdMovieAtom] = useAtom(idMovieAtom)
+
+    const [idMovie, setIdMovie] = useState(null)
     const [isMute, setIsMute] = useState(true)
     const [topMovies, setTopMovies] = useState([])
     const [videoUrl, setVideoUrl] = useState(null)
@@ -50,7 +52,10 @@ const Jumbotron = () => {
                         <GoPlay /> Play
                     </button>
                     <button
-                        onClick={() => setIsOpenModal(true)}
+                        onClick={() => {
+                            setIdMovieAtom(idMovie)
+                            setIsOpenModal(true)
+                        }}
                         className='bg-stone-600/80 py-2 px-8 rounded-md text-white'
                     >
                         More Detail
