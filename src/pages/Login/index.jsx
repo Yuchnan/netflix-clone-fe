@@ -24,6 +24,7 @@ const Register = () => {
                 const firebaseToken = await getIdToken(login.user)
                 setToken(firebaseToken)
                 navigate("/browse")
+                toast("LOGIN SUCCESS!")
             }
         } catch (error) {
             toast(error.message)
