@@ -8,6 +8,7 @@ import { useAtom } from 'jotai'
 import { idMovieAtom, isFetchingAtom, isOpenModalAtom } from '@/jotai/atoms'
 import { getVideoUrl } from '@/utils/getVideoUrl'
 import { useNavigate } from 'react-router-dom'
+import { LIST_VIDEO_RECOMMENDATION } from '@/constants/dummyVideo'
 
 const MovieCard = ({ data, isHover, setIsHover }) => {
     const navigate = useNavigate()
@@ -69,7 +70,7 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
                         setIdMovie(data.id)
                         getVideoUrl({ movie_id: data.id }).then(result => setVideoUrl(result))
                     }}
-                    src={`${import.meta.env.VITE_BASE_URL_TMDB_IMAGE}${data.poster_path}`}
+                    src={!data.poster_path ? LIST_VIDEO_RECOMMENDATION[0].image : `${import.meta.env.VITE_BASE_URL_TMDB_IMAGE}${data.poster_path}`}
                     className='w-full max-h-48 cursor-pointer'
                 />
 

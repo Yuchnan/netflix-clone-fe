@@ -5,21 +5,41 @@ import { GoChevronLeft } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
 import { emailAtom } from '@/jotai/atoms'
 import { useAtom } from 'jotai'
+import { auth } from '@/utils/firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
     const navigate = useNavigate()
-    const [email, setEmail] = useAtom(emailAtom)
 
-    const handleLogin = (e) => {
+    const [email, setEmail] = useAtom(emailAtom)
+    const [password, setPassword] = useState(null)
+
+    const notify = (message) => toast(message);
+
+    const handleRegister = async (e) => {
         e.preventDefault
-        alert("REGISTER SUCCESS!")
+        try {
+            const register = await createUserWithEmailAndPassword(auth, email, password)
+            if (register) {
+                notify("REGISTER SUCCESS!")
+                setTimeout(() => {
+                    navigate("/login")
+                }, 2000)
+            }
+        } catch (error) {
+            notify(error.message)
+
+        }
     }
 
     return (
         <>
+            <ToastContainer position='top-center' theme='dark' autoClose={2000} />
             <img
                 src={JUMBOTRON_IMAGE}
-                className='image-full h-[100vh] object-cover opacity-70'
+                className='w-full h-[100vh] object-cover opacity-70'
             />
             <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-black/80 px-8 py-16 rounded-xl max-w-xl w-full'>
                 <form className='flex flex-col gap-4'>
@@ -47,6 +67,7 @@ const Register = () => {
                         <input
                             placeholder="Password"
                             type='password'
+                            onChange={(e) => setPassword(e.target.value)}
                             className='w-full p-4 bg-black/50 rounded-md border border-white/50 peer placeholder-transparent'
                         />
                         <label
@@ -55,7 +76,7 @@ const Register = () => {
                     </div>
                     <div className='flex flex-col gap-4'>
                         <button
-                            onClick={handleLogin}
+                            onClick={handleRegister}
                             className='bg-red-500 py-3 w-full text-white font-bold rounded-md'
                         >
                             Sign Up
