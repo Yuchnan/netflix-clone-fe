@@ -3,17 +3,31 @@ import React, { useState } from 'react'
 import { JUMBOTRON_IMAGE } from '@/constants/listAsset'
 import { GoChevronLeft } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
-import { emailAtom } from '@/jotai/atoms'
+import { emailAtom, tokenAtom } from '@/jotai/atoms'
 import { useAtom } from 'jotai'
+import { signInWithEmailAndPassword, getIdToken } from 'firebase/auth'
+import { auth } from '@/utils/firebase'
+import { toast } from 'react-toastify'
 
 const Register = () => {
     const navigate = useNavigate()
+
+    const [token, setToken] = useAtom(tokenAtom)
     const [email, setEmail] = useAtom(emailAtom)
     const [password, setPassword] = useState(null)
 
-    const handleLogin = (e) => {
-        e.preventDefault
-        alert("LOGIN SUCCESS!")
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        try {
+            const login = await signInWithEmailAndPassword(auth, email, password)
+            if (login) {
+                const firebaseToken = await getIdToken(login.user)
+                setToken(firebaseToken)
+                navigate("/browse")
+            }
+        } catch (error) {
+            toast(error.message)
+        }
     }
 
     return (

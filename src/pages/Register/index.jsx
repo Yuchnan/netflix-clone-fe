@@ -16,20 +16,18 @@ const Register = () => {
     const [email, setEmail] = useAtom(emailAtom)
     const [password, setPassword] = useState(null)
 
-    const notify = (message) => toast(message);
-
     const handleRegister = async (e) => {
-        e.preventDefault
+        e.preventDefault()
         try {
             const register = await createUserWithEmailAndPassword(auth, email, password)
             if (register) {
-                notify("REGISTER SUCCESS!")
+                toast("REGISTER SUCCESS!")
                 setTimeout(() => {
                     navigate("/login")
                 }, 2000)
             }
         } catch (error) {
-            notify(error.message)
+            toast(error.message)
 
         }
     }
