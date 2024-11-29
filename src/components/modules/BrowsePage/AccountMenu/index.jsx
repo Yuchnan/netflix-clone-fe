@@ -1,6 +1,15 @@
 import React from 'react'
 
+import { auth } from '@/utils/firebase'
+import { signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import { useAtom } from 'jotai'
+import { tokenAtom } from '@/jotai/atoms'
+
 const AccountMenu = () => {
+    const navigate = useNavigate()
+    const [token, setIsToken] = useAtom(tokenAtom)
+
     return (
         <div className='
         flex dropdown dropdown-hover dropdown-end'>
@@ -10,7 +19,12 @@ const AccountMenu = () => {
                 </div>
             </div>
             <button 
-                onClick={() => console.log('signout...')}
+                onClick={() => {
+                    signOut(auth).then(() => {
+                        setIsToken(null)
+                        navigate("/")
+                    })
+                }}
                 tabIndex={0} 
                 className='dropdown-content top-10 w-32 bg-black py-1'
             >
