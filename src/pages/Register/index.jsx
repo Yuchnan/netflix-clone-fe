@@ -9,6 +9,7 @@ import { auth } from '@/utils/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import DefaultLayout from '@/components/Layouts/DefaultLayout'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -33,7 +34,7 @@ const Register = () => {
     }
 
     return (
-        <>
+        <DefaultLayout>
             <ToastContainer position='top-center' theme='dark' autoClose={2000} />
             <img
                 src={JUMBOTRON_IMAGE}
@@ -90,7 +91,7 @@ const Register = () => {
                     </div>
                 </form>
             </div>
-        </>
+        </DefaultLayout>
     )
 }
 

@@ -5,7 +5,7 @@ import EachUtils from '@/utils/EachUtils'
 import { useAtom } from 'jotai'
 import { motion } from 'framer-motion'
 import { languageAtom } from '@/jotai/atoms'
-import { FAQ_TITLE_EN, FAQ_TITLE_ID, LIST_FAQ_ID,LIST_FAQ_EN } from '@/constants/listFAQ'
+import { FAQ_TITLE_EN, FAQ_TITLE_ID, LIST_FAQ_ID, LIST_FAQ_EN } from '@/constants/listFAQ'
 
 const SectionFAQ = () => {
     const [language] = useAtom(languageAtom)

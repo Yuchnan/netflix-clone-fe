@@ -8,6 +8,7 @@ import { useAtom } from 'jotai'
 import { signInWithEmailAndPassword, getIdToken } from 'firebase/auth'
 import { auth } from '@/utils/firebase'
 import { toast } from 'react-toastify'
+import DefaultLayout from '@/components/Layouts/DefaultLayout'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -34,7 +35,7 @@ const Register = () => {
     }
 
     return (
-        <>
+        <DefaultLayout>
             <img
                 src={JUMBOTRON_IMAGE}
                 className='w-full h-[100vh] object-cover opacity-70'
@@ -90,7 +91,7 @@ const Register = () => {
                     </div>
                 </form>
             </div>
-        </>
+        </DefaultLayout>
     )
 }
 

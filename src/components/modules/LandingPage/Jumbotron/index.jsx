@@ -5,8 +5,8 @@ import InputMembership from '@/components/modules/LandingPage/InputMembership'
 import { JUMBOTRON_IMAGE } from "@/constants/listAsset"
 import { useAtom } from 'jotai'
 import { languageAtom } from '@/jotai/atoms'
-import {LIST_JUMBOTRON_EN} from '@/constants/listJumbotrons'
-import {LIST_JUMBOTRON_ID} from '@/constants/listJumbotrons'
+import { LIST_JUMBOTRON_EN } from '@/constants/listJumbotrons'
+import { LIST_JUMBOTRON_ID } from '@/constants/listJumbotrons'
 
 const Jumbotron = () => {
     const  [language] = useAtom(languageAtom)
