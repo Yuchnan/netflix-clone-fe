@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { JUMBOTRON_IMAGE } from '@/constants/listAsset'
 import { GoChevronLeft } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
-import { emailAtom, tokenAtom } from '@/jotai/atoms'
+import { emailAtom, emailStorageAtom, tokenAtom } from '@/jotai/atoms'
 import { useAtom } from 'jotai'
 import { signInWithEmailAndPassword, getIdToken } from 'firebase/auth'
 import { auth } from '@/utils/firebase'
@@ -12,7 +12,9 @@ import { toast } from 'react-toastify'
 const Register = () => {
     const navigate = useNavigate()
 
-    const [token, setToken] = useAtom(tokenAtom)
+    const [, setToken] = useAtom(tokenAtom)
+    const [, setEmailStorage] = useAtom(emailStorageAtom
+    )
     const [email, setEmail] = useAtom(emailAtom)
     const [password, setPassword] = useState(null)
 
@@ -23,8 +25,8 @@ const Register = () => {
             if (login) {
                 const firebaseToken = await getIdToken(login.user)
                 setToken(firebaseToken)
+                setEmailStorage(login.user.email)
                 navigate("/browse")
-                toast("LOGIN SUCCESS!")
             }
         } catch (error) {
             toast(error.message)

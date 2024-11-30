@@ -4,11 +4,12 @@ import { auth } from '@/utils/firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { useAtom } from 'jotai'
-import { tokenAtom } from '@/jotai/atoms'
+import { emailStorageAtom, tokenAtom } from '@/jotai/atoms'
 
 const AccountMenu = () => {
     const navigate = useNavigate()
-    const [token, setIsToken] = useAtom(tokenAtom)
+    const [, setIsToken] = useAtom(tokenAtom)
+    const [, setEmailStorage] = useAtom(emailStorageAtom)
 
     return (
         <div className='
@@ -22,6 +23,7 @@ const AccountMenu = () => {
                 onClick={() => {
                     signOut(auth).then(() => {
                         setIsToken(null)
+                        setEmailStorage(null)
                         navigate("/")
                     })
                 }}
